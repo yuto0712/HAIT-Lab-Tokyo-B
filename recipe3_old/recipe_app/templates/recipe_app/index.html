@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+ <meta charset="utf-8">
+ <title>img_prediction</title>
+ <link rel="stylesheet" type="text/css"
+      href="{% static 'myapp/css/style.css' %}" />
+</head>
+<body>
+<p>{{pred}}</p>
+<table>
+<form action="{% url 'index' %}" method="POST" enctype="multipart/form-data">
+   {% csrf_token %}
+   {{ form }}
+   <tr><td></td><td><input type="submit" value="食材判定" /></td></tr>
+</form>
+</table>
+<a href="{% url 'index2' %}">レシピ提案</a><br>
+</body>
+</html>
