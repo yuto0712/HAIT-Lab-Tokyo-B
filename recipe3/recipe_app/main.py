@@ -41,3 +41,8 @@ def pred(img_path):
         with open(path_w, mode='a') as f:
             f.write('\n' + label[np.argmax(img_pred)])
         return label[np.argmax(img_pred)]
+
+def delete():
+    path = settings.BASE_DIR + r'/save_data/text.txt'
+    if os.path.exists(path) ==True:
+        os.remove(path)

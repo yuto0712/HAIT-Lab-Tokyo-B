@@ -13,8 +13,17 @@
 <form action="{% url 'index' %}" method="POST" enctype="multipart/form-data">
    {% csrf_token %}
    {{ form }}
-   <tr><td></td><td><input type="submit" value="診断" /></td></tr>
+   <tr><td></td><td><input type="submit" value="食材判定" /></td></tr>
 </form>
 </table>
+</body>
+<body>
+  <table>
+  <form action="{% url 'index3' %}" method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+     <tr><td></td><td><input type="submit" value="再入力" /></td></tr>
+  </form>
+  </table>
+<button type=“button” onclick="location.href='{% url 'index2' %}'">レシピ提案</button>
 </body>
 </html>
