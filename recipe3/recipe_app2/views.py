@@ -2,17 +2,16 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .forms import TextForm
-from .main import recipe
+from .main import recipe2
 from django.conf import settings
 import os
 # Create your views here.
 class MyappView2(TemplateView):
    def __init__(self):
-       self.params={'pred': 'idx',
-                    'form': TextForm()}
-       text_path = settings.BASE_DIR + r'/save_data/text.txt'
+       self.params={'pred': 'idx'}
+       text_path = './save_data/text.txt'
        if os.path.exists(text_path) ==True:
-           self.params['pred'] = recipe(text_path)
+           self.params['pred'] = recipe2(text_path)
        else:
            self.params['pred'] = "食材が入力されていません"
 

@@ -17,7 +17,7 @@ def pred(img_path):
 
 
         # trainディレクトリのフォルダ名の順序通り並べます
-        label = ['carrot', 'meat', 'onion', 'potato', 'tomato']
+        label = ['人参', '肉', '玉ねぎ', 'じゃがいも', 'トマト']
         json_string = default_storage.open('./weight_dir/' + file_name + '.json').read()
         model = model_from_json(json_string)
         model.load_weights(settings.BASE_DIR + r'/media/weight_dir/' + file_name + '.h5')

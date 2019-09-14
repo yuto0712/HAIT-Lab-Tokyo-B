@@ -1,6 +1,5 @@
 
-tomato
-tomato
-meat
-carrot
-meat
+トマト
+玉ねぎ
+人参
+人参
