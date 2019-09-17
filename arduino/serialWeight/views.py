@@ -1,25 +1,36 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.http import HttpResponse
 import serial
-import re
+import slackweb
 
 class SignalTemplateView(TemplateView):
     template_name = "signal.html"
-    ser = serial.Serial("/dev/cu.usbmodem14201", 9600, timeout=None)
 
-    while True:
-        line = ser.readline()
-        print(line)
 
-    ser.close()
+    def get(self, request):
+        ser = serial.Serial("/dev/cu.usbmodem14201", 9600, timeout=None)
 
-    def post(self, request):
-        if request.method == "POST":
-            if "LED" in request.POST:
-                ser = serial.Serial("/dev/cu.usbmodem14101")
-                ser.write(1)
-                ser.close()
-        return render(request, self.template_name)
+        if request.method == "GET":
+            output = ser.readline().decode("utf-8").strip("\r\n")
+            if output == "H":
+                params = {
+                    "status": "danger"
+                }
+                send_slack_message()
+            else:
+                params = {
+                    "status": "safe"
+                }
+            print(output)
+
+        return render(request, "signal.html", params)
+
+def send_slack_message():
+    slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+    slack.notify(text="残量が足りません！補給したほうがいいよ．")
+
+
+
+
 
 

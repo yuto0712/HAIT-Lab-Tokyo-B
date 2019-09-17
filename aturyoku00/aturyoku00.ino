@@ -16,7 +16,7 @@ if (val > 20 and val < 100) {
 else  {
   digitalWrite(13,LOW);
   Serial.println("L");
-  Serial.println(val);
+  //Serial.println(val);
   delay(500);
   }
 }
